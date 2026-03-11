@@ -1,13 +1,14 @@
 document.addEventListener('DOMContentLoaded', () => {
     const lottoContainer = document.getElementById('lotto-container');
     const generateBtn = document.getElementById('generate-btn');
+    const clearBtn = document.getElementById('clear-btn');
 
     function getBallColor(number) {
-        if (number <= 10) return '#fbc400'; // Yellow
-        if (number <= 20) return '#69c8f2'; // Blue
-        if (number <= 30) return '#ff7272'; // Red
-        if (number <= 40) return '#aaa';    // Gray
-        return '#b0d840';                  // Green
+        if (number <= 10) return '#f9ca24'; // Yellow
+        if (number <= 20) return '#0984e3'; // Blue
+        if (number <= 30) return '#d63031'; // Red
+        if (number <= 40) return '#636e72'; // Gray
+        return '#00b894';                  // Green
     }
 
     function generateLottoNumbers() {
@@ -19,23 +20,36 @@ document.addEventListener('DOMContentLoaded', () => {
         return Array.from(numbers).sort((a, b) => a - b);
     }
 
-    function displayNumbers(numbers) {
+    async function displayNumbers(numbers) {
         lottoContainer.innerHTML = '';
-        numbers.forEach(number => {
+        for (let i = 0; i < numbers.length; i++) {
+            const number = numbers[i];
             const ball = document.createElement('div');
             ball.className = 'lotto-ball';
             ball.textContent = number;
             ball.style.backgroundColor = getBallColor(number);
+            
+            // Add staggered delay
+            ball.style.animationDelay = `${i * 0.1}s`;
+            
             lottoContainer.appendChild(ball);
-        });
+            // Small pause for visual effect
+            await new Promise(resolve => setTimeout(resolve, 50));
+        }
     }
 
-    generateBtn.addEventListener('click', () => {
+    generateBtn.addEventListener('click', async () => {
+        generateBtn.disabled = true;
         const numbers = generateLottoNumbers();
-        displayNumbers(numbers);
+        await displayNumbers(numbers);
+        generateBtn.disabled = false;
     });
 
-    // Initial generation
+    clearBtn.addEventListener('click', () => {
+        lottoContainer.innerHTML = '';
+    });
+
+    // Initial generation for a nice first impression
     const initialNumbers = generateLottoNumbers();
     displayNumbers(initialNumbers);
 });
