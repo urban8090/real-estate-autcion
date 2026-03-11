@@ -7,12 +7,19 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="theme-switch-wrapper">
+        <label class="theme-switch" for="checkbox">
+            <input type="checkbox" id="checkbox" />
+            <div class="slider round"></div>
+        </label>
+        <span id="theme-text">Dark Mode</span>
+    </div>
     <div class="glass-container">
         <h1>Lotto Fortune</h1>
-        <p class="subtitle">Your lucky numbers are just a click away!</p>
-        <div id="lotto-container"></div>
+        <p class="subtitle">Your 5 sets of lucky numbers are ready!</p>
+        <div id="lotto-display-area"></div>
         <div class="button-group">
-            <button id="generate-btn">Generate</button>
+            <button id="generate-btn">Generate 5 Sets</button>
             <button id="clear-btn" class="secondary-btn">Clear</button>
         </div>
     </div>
