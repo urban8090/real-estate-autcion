@@ -9,11 +9,11 @@ document.addEventListener('DOMContentLoaded', () => {
     function switchTheme(e) {
         if (e.target.checked) {
             document.documentElement.setAttribute('data-theme', 'dark');
-            themeText.textContent = 'Light Mode';
+            themeText.textContent = '라이트 모드';
             localStorage.setItem('theme', 'dark');
         } else {
             document.documentElement.setAttribute('data-theme', 'light');
-            themeText.textContent = 'Dark Mode';
+            themeText.textContent = '다크 모드';
             localStorage.setItem('theme', 'light');
         }    
     }
@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.documentElement.setAttribute('data-theme', currentTheme);
         if (currentTheme === 'dark') {
             toggleSwitch.checked = true;
-            themeText.textContent = 'Light Mode';
+            themeText.textContent = '라이트 모드';
         }
     }
 
